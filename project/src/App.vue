@@ -1,27 +1,23 @@
 <template>
   <div>
-    <h1>我新增一个</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-const str = '我爱你祖国'
-export default defineComponent({
+import { onMounted } from 'vue';
+import { reqLogin } from './api/user';
+
+export default {
   setup() {
-    return {}
-  },
-})
+    onMounted(() => {
+      reqLogin({ username: 'admin', password: '111111' });
+    });
+
+    return {};
+  }
+};
 </script>
 
-<style scoped lang="scss">
-.box {
-  width: 500px;
-  height: 400px;
-  background: black;
-
-  h1 {
-    color: white;
-  }
-}
+<style lang="scss" scoped>
 </style>
