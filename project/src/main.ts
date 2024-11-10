@@ -13,6 +13,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 app.use(ElementPlus, {
   locale: zhCn
 })
+
+import pinia from './store/index.ts';
 app.use(ElementPlus)
 // svg的引入
 // import 'virtual:svg-icons-register'
@@ -21,7 +23,7 @@ app.use(router);
 // 安装仓库
 app.use(gloablComponent);
 
-
+app.use(pinia)
 // 测试假的接口
 
 axios({
