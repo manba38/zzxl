@@ -22,9 +22,7 @@ const changeIcon = () => {
     LayOutSettingStore.Fold = !LayOutSettingStore.Fold;
 }
 let $route = useRoute()
-const handler = () => {
-    console.log($route.matched)
-}
+
 </script>
 
 <style scoped></style>

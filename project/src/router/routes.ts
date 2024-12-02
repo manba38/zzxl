@@ -1,4 +1,3 @@
-import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
 
 
 // 对外暴露配置的路
@@ -6,7 +5,7 @@ export const constantRoute = [
     {
         // 登录
         path: '/login',
-        component: () => import('@/views/login/index.vue'),
+        component: () => import('../views/login/index.vue'),
         name: 'login',
         meta: {
             title: '登录',
@@ -17,7 +16,7 @@ export const constantRoute = [
     },
     {
         path: '/',
-        component: () => import('@/layout/index.vue'),
+        component: () => import('../layout/index.vue'),
         name: 'layout',
         meta: {
             title: '',
@@ -29,7 +28,7 @@ export const constantRoute = [
         children: [
             {
                 path: '/home',
-                component: () => import('@/views/home/index.vue'),
+                component: () => import('../views/home/index.vue'),
                 meta: {
                     title: '首页',
                     hidden: false,
@@ -41,7 +40,7 @@ export const constantRoute = [
     },
     {
         path: '/404',
-        component: () => import('@/views/404/index.vue'),
+        component: () => import('../views/404/index.vue'),
         meta: {
             title: '404',
             hidden: true,
@@ -51,7 +50,7 @@ export const constantRoute = [
     },
     {
         path: '/screen',
-        component: () => import('@/views/screen/index.vue'),
+        component: () => import('../views/screen/index.vue'),
         name: 'Screen',
         meta: {
             hidden: false,
@@ -59,10 +58,15 @@ export const constantRoute = [
             icon: 'Platform'
         }
     },
+
+
+]
+// 异步路由
+export const asnycRoute = [
     {
         path: '/acl',
-        component: () => import('@/layout/index.vue'),
-        name: 'Acl1',
+        component: () => import('../layout/index.vue'),
+        name: 'Acl',
         meta: {
             title: '权限管理',
             hidden: false,
@@ -72,7 +76,7 @@ export const constantRoute = [
         children: [
             {
                 path: '/acl/user',
-                component: () => import('@/views/acl/user/index.vue'),
+                component: () => import('../views/acl/user/index.vue'),
                 name: 'Acl',
                 meta: {
                     title: '用户管理',
@@ -81,7 +85,7 @@ export const constantRoute = [
                 }
             }, {
                 path: '/acl/role',
-                component: () => import('@/views/acl/role/index.vue'),
+                component: () => import('../views/acl/role/index.vue'),
                 name: 'Role',
                 meta: {
                     title: '角色管理',
@@ -90,10 +94,10 @@ export const constantRoute = [
                 }
             }, {
                 path: '/acl/permission',
-                component: () => import('@/views/acl/permission/index.vue'),
+                component: () => import('../views/acl/permission/index.vue'),
                 name: 'Permission',
                 meta: {
-                    title: '权限管理',
+                    title: '菜单管理',
                     hidden: false,
                     icon: 'Monitor'
                 }
@@ -102,7 +106,7 @@ export const constantRoute = [
     },
     {
         path: '/product',
-        component: () => import('@/layout/index.vue'),
+        component: () => import('../layout/index.vue'),
         name: 'Product',
         meta: {
             title: '商品管理',
@@ -114,7 +118,7 @@ export const constantRoute = [
         children: [
             {
                 path: '/product/trademark',
-                component: () => import('@/views/product/trademark/index.vue'),
+                component: () => import('../views/product/trademark/index.vue'),
                 name: 'Trademark',
                 meta: {
                     title: '品牌管理',
@@ -124,7 +128,7 @@ export const constantRoute = [
             },
             {
                 path: '/product/attr',
-                component: () => import('@/views/product/attr/index.vue'),
+                component: () => import('../views/product/attr/index.vue'),
                 name: 'Attr',
                 meta: {
                     title: '属性管理',
@@ -134,7 +138,7 @@ export const constantRoute = [
             },
             {
                 path: '/product/spu',
-                component: () => import('@/views/product/spu/index.vue'),
+                component: () => import('../views/product/spu/index.vue'),
                 name: 'Spu',
                 meta: {
                     title: 'Spu管理',
@@ -144,7 +148,7 @@ export const constantRoute = [
             },
             {
                 path: '/product/sku',
-                component: () => import('@/views/product/sku/index.vue'),
+                component: () => import('../views/product/sku/index.vue'),
                 name: 'Sku',
                 meta: {
                     title: 'Sku管理',
@@ -154,6 +158,10 @@ export const constantRoute = [
             }
         ]
     },
+]
+
+// 任意路由
+export const anyRoute = [
     {
         path: '/:pathMatch(.*)*',
         redirect: '/404',

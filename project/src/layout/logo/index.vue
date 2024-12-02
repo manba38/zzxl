@@ -1,6 +1,6 @@
 <template>
     <div class="logo" v-if="setting.logoHidden">
-        <img :src="setting.logo" alt="">
+        <img src="../../../public/logo.png" alt="">
         <p>{{ setting.title }}</p>
 
     </div>

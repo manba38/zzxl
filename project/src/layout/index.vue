@@ -1,40 +1,39 @@
 <template>
     <div class="layout_container">
-        <div class="layout_slider" :class="{ fold: LayOutSettingStore.Fold ? true : false }">
+        <div class="layout_slider" :class="{ fold: LayOutSettingStore.Fold }">
             <Logo></Logo>
             <el-scrollbar class="scrollbar">
-                <el-menu :default-active="$route.path" background-color="#050920" text-color="white"
-                    :collapse="LayOutSettingStore.Fold ? true : false">
-                    <!-- 封装成组件了 -->
+                <el-menu :default-active="route.path" background-color="#050920" text-color="white"
+                    :collapse="LayOutSettingStore.Fold">
                     <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
         </div>
-        <div class="layout_tabbar" :class="{ fold: LayOutSettingStore.Fold ? true : false }">
+        <div class="layout_tabbar" :class="{ fold: LayOutSettingStore.Fold }">
             <Tabbar></Tabbar>
         </div>
-        <div class=" layout_main" :class="{ fold: LayOutSettingStore.Fold ? true : false }">
-
+        <div class="layout_main" :class="{ fold: LayOutSettingStore.Fold, 'dark': isDark }">
             <Main></Main>
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">
-
-// 获取路由器对象
-import { useRoute } from 'vue-router'
-import Logo from './logo/index.vue'
-import Menu from './menu/index.vue'
+import { useRoute } from 'vue-router';
+import Logo from './logo/index.vue';
+import Menu from './menu/index.vue';
 import useUserStore from '../store/modules/user';
-import Main from './main/index.vue'
-import Tabbar from './tabbar/index.vue'
+import Main from './main/index.vue';
+import Tabbar from './tabbar/index.vue';
 import userLayOutSettingStore from '../store/modules/types/setting';
-let userStore = useUserStore()
-let $route = useRoute();
-console.log($route.path);
-let LayOutSettingStore = userLayOutSettingStore()
+import { computed } from 'vue';
+import { useDarkModeStore } from '../store/modules/types/daek';
+
+const userStore = useUserStore();
+const route = useRoute();
+const LayOutSettingStore = userLayOutSettingStore();
+const darkModeStore = useDarkModeStore(); // 使用 Dark Mode Store
+const isDark = computed(() => darkModeStore.dark); // 创建一个计算属性来获取 dark 状态
 </script>
 
 <style lang="scss" scoped>
@@ -50,21 +49,14 @@ let LayOutSettingStore = userLayOutSettingStore()
         background-color: $base-menu-backgroundcolor;
         transition: all 0.3s;
 
-
-
         .scrollbar {
             width: 100%;
             height: calc(100vh - $base-menu-logo-height-img);
 
             .el-menu {
                 border-right: none;
-
             }
-
-
         }
-
-
     }
 
     .layout_tabbar {
@@ -73,12 +65,12 @@ let LayOutSettingStore = userLayOutSettingStore()
         height: $base-tabbar-height;
         background-color: #ffffff;
         top: 0px;
-        left: $base-menu-width ;
+        left: $base-menu-width;
         transition: all 0.3s;
 
         &.fold {
             width: calc(100vw - 70px);
-            left: $base-menu-min-width ;
+            left: $base-menu-min-width;
         }
     }
 
@@ -86,16 +78,20 @@ let LayOutSettingStore = userLayOutSettingStore()
         position: absolute;
         width: calc(100% - $base-menu-width);
         height: calc(100vh - $base-tabbar-height);
-        background-color: rgb(138, 231, 84);
-        left: $base-menu-width ;
-        top: $base-tabbar-height ;
+        background-color: white; // 默认背景颜色为白色
+        left: $base-menu-width;
+        top: $base-tabbar-height;
         padding: 20px;
         overflow: auto;
         transition: all 0.3s;
 
         &.fold {
             width: calc(100vw - 70px);
-            left: $base-menu-min-width ;
+            left: $base-menu-min-width;
+        }
+
+        &.dark {
+            background-color: black; // 当 .dark 类存在时，背景颜色为黑色
         }
     }
 }
